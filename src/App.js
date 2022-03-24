@@ -1,5 +1,5 @@
 import { fetchData } from './services/constants'
-import { useState,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Input from './components/Input';
 import WeatherCard from './components/WeatherCard';
@@ -49,32 +49,35 @@ const handleOnChange = (event) =>{
 
 const handleSubmit = async (e) =>{
     e.preventDefault();
-    console.log('handleSubmit');
-    console.log(inputValue);
-    const temp = fetchData(inputValue);
-    console.log(temp)
-   
-    setWeatherData(temp);
+    try {
+      const temp  = await fetchData(inputValue);
+      setWeatherData(temp);
+    } catch (error) {
+      console.log(error);
+    }
+    // const temp  = await fetchData(inputValue);
+    // console.log(temp);
+    
 }
-
+// console.log(weatherData);
 // console.log(weatherData);
 //not sure::: Do we write useEffect - similar to FruitContainer
 //[weatherData]
 
-// useEffect(() =>{
-//   console.log('Weather data' , weatherData)
+useEffect(() =>{
+  console.log('Weather data' , weatherData)
+  handleSubmit();
+},[])
 
-// },[weatherData])
-
-const array = Object.values(weatherData)
-console.log(array);
+// const array = Object.values(weatherData)
+// console.log(array);
   return (
     <div className="App">
-           
-            {/* <WeatherCard cards = {weatherData} /> */}
             <Input onChange = {(e) => handleOnChange(e)} 
                     onClick = {(e) => handleSubmit(e)}
             />
+            <WeatherCard data= {weatherData}/>
+            
     </div>
   );
 }
