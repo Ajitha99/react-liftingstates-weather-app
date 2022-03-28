@@ -1,0 +1,43 @@
+*{
+    margin:0px;
+    padding:0px;
+    /* background-image: url('../images/app_blue.jpg'); */
+    /* background-position: center; */
+    /* background-repeat: repeat; */
+    /* background-size: cover; */
+    }
+.input-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:20px;
+    background-image: none;
+}
+input{
+    width: 200px;
+    height:40px;
+    border-radius: .3em;
+    font-size: x-large;
+    color:rgb(203, 68, 18);
+    border: whitesmoke;
+    text-align: center;
+} 
+input:hover{
+    width:205px;
+    height:42px;
+}  
+button{
+    width:100px;
+    height:42px;
+    margin-left:20px;
+    border-radius: .3em;
+    font-size: large;
+    font-weight:bolder;
+    color: rgb(203, 68, 18);
+    border:whitesmoke;
+}
+button:hover{
+    font-size: x-large;
+    color:rgb(203, 68, 18);
+    border: whitesmoke;
+}

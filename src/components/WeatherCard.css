@@ -1,0 +1,16 @@
+.parent-weatherCard{
+    width:400px;
+    height:400px;
+    color: rgb(17, 85, 148);
+    padding:10px;
+}
+span{
+    margin: 10px;
+    color: rgb(203, 68, 18);
+    font-size:x-large;
+    align-items: left;
+}
+h3{
+    margin:10px;
+    font-size: x-large;
+}

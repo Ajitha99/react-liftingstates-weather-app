@@ -1,15 +1,18 @@
 import { fetchData } from './services/constants'
 import { useState, useEffect } from 'react';
 import './App.css';
+import '../src/components/Input.css'
 import Input from './components/Input';
 import WeatherCard from './components/WeatherCard';
 
 
 function App() {
 
-  const [ weatherData, setWeatherData] = useState({})
+  const [ weatherData, setWeatherData] = useState({});
 
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('');
+
+
 
 
 //one way of defining state: --- 
@@ -40,46 +43,91 @@ const handleOnChange = (event) =>{
 }
 
 
-//async handleSubmit(e) function: --
+// async handleSubmit(e) function: --
 // some value = e.target.value
-//setValue(value);
-//we have to pass useState value to  fetchData method(value) 
-//we have to store response data one variable
-//setWeatherData(with the response from the api call)
+// setValue(value);
+// we have to pass useState value to  fetchData method(value) 
+// we have to store response data one variable
+// setWeatherData(with the response from the api call)
 
 const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
       const temp  = await fetchData(inputValue);
+      // console.log(temp);
       setWeatherData(temp);
+      setInputValue('');
     } catch (error) {
       console.log(error);
     }
-    // const temp  = await fetchData(inputValue);
-    // console.log(temp);
-    
+   
 }
-// console.log(weatherData);
-// console.log(weatherData);
-//not sure::: Do we write useEffect - similar to FruitContainer
-//[weatherData]
+
 
 useEffect(() =>{
   console.log('Weather data' , weatherData)
-  handleSubmit();
-},[])
+ 
+},[weatherData])
 
-// const array = Object.values(weatherData)
-// console.log(array);
+
+
+
+
+
+
+
   return (
     <div className="App">
+        <div className='gp-div'>
+            <h1>Weather Application</h1>
             <Input onChange = {(e) => handleOnChange(e)} 
                     onClick = {(e) => handleSubmit(e)}
+                    value = {inputValue}
             />
-            <WeatherCard data= {weatherData}/>
+            <div className='weather-card-div'>
+                <WeatherCard data= {weatherData}
+                />
+            </div>
+        </div>
+            
             
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+// const[submit, setSubmit] = useState(false);
+// const handleSubmit = async (e) =>{
+//   e.preventDefault();
+//   setSubmit(true);
+ 
+// }
+
+// useEffect(() =>{
+// if(submit === true){
+//   (async () =>{
+//     try {
+//       const temp  = await fetchData(inputValue);
+//       // console.log(temp);
+//       setWeatherData(temp);
+//       setInputValue('');
+//       setSubmit(false);
+//     } catch (error) {
+//       console.log(error);
+//     }
+// })
+// ()
+// }
+
+// },[weatherData])
